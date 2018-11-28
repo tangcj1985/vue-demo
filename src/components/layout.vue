@@ -16,8 +16,8 @@
             <li class="nav-pile">|</li>
             <li>关于</li>
           </ul>
-        </div>  
-      </div>
+        </div>
+        </div>
     </div>
     <div class="container">
       <keep-alive>
@@ -25,9 +25,8 @@
       </keep-alive>
     </div>
     <div class="app-foot">
-      <p>© 2016 TCJ NIUBI</p>
+      <p>© 2018 TCJ NIUBI</p>
     </div>
-    
   </div>
 </template>
 
@@ -43,12 +42,12 @@ export default {
 //   },
   data () {
     return {
-      isShowAboutDialog: false,
-      isShowLogDialog: false,
-      isShowRegDialog: false,
-      username: ''
+      // isShowAboutDialog: false,
+      // isShowLogDialog: false,
+      // isShowRegDialog: false,
+      // username: ''
     }
-  },
+  }
 //   methods: {
 //     aboutClick () {
 //       this.isShowAboutDialog = true
@@ -72,11 +71,6 @@ export default {
 </script>
 
 <style>
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -86,8 +80,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
   margin: 0;
@@ -98,7 +92,7 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block;
 }
@@ -188,9 +182,6 @@ body {
 }
 .button:hover {
   background: #4fc08d;
-}
-.g-form {
-
 }
 .g-form-line {
   padding: 15px 0;
