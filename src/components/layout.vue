@@ -10,11 +10,11 @@
             <!-- <li> {{ username }}</li>
             <li class="nav-pile">|</li>
             <li>退出</li> -->
-            <li>登录</li>
+            <li @click="logClick">登录</li>
             <li class="nav-pile">|</li>
-            <li>注册</li>
+            <li @click="regClick">注册</li>
             <li class="nav-pile">|</li>
-            <li>关于</li>
+            <li @click="aboutClick">关于</li>
           </ul>
         </div>
         </div>
@@ -27,46 +27,56 @@
     <div class="app-foot">
       <p>© 2018 TCJ NIUBI</p>
     </div>
+    <MyDialog :isShow='isShowAboutDialog' @on-close=
+      "closeDialog('isShowAboutDialog')"><p>关于怎么个牛逼</p></MyDialog>
+    <MyDialog :isShow='isShowLogDialog' @on-close=
+      "closeDialog('isShowLogDialog')">
+      <LogForm></LogForm>
+    </MyDialog>
+    <MyDialog :isShow='isShowRegDialog' @on-close=
+      "closeDialog('isShowRegDialog')">
+      <RegForm></RegForm>
+    </MyDialog>
   </div>
 </template>
 
 <script>
-// import Dialog from './base/dialog'
-// import LogForm from './logForm'
-// import RegForm from './regForm'
+import Dialog from './base/dialog'
+import LogForm from './logForm'
+import RegForm from './regForm'
 export default {
-//   components: {
-//     MyDialog: Dialog,
-//     LogForm,
-//     RegForm
-//   },
+  components: {
+    MyDialog: Dialog,
+    LogForm,
+    RegForm
+  },
   data () {
     return {
-      // isShowAboutDialog: false,
-      // isShowLogDialog: false,
-      // isShowRegDialog: false,
-      // username: ''
+      isShowAboutDialog: false,
+      isShowLogDialog: false,
+      isShowRegDialog: false,
+      username: ''
+    }
+  },
+  methods: {
+    aboutClick () {
+      this.isShowAboutDialog = true
+    },
+    logClick () {
+      this.isShowLogDialog = true
+    },
+    regClick () {
+      this.isShowRegDialog = true
+    },
+    closeDialog (attr) {
+      this[attr] = false
+    },
+    onSuccessLog (data) {
+      console.log(data)
+      this.closeDialog('isShowLogDialog')
+      this.username = data.username
     }
   }
-//   methods: {
-//     aboutClick () {
-//       this.isShowAboutDialog = true
-//     },
-//     logClick () {
-//       this.isShowLogDialog = true
-//     },
-//     regClick () {
-//       this.isShowRegDialog = true
-//     },
-//     closeDialog (attr) {
-//       this[attr] = false
-//     },
-//     onSuccessLog (data) {
-//       console.log(data)
-//       this.closeDialog ('isShowLogDialog')
-//       this.username = data.username
-//     }
-//   }
 }
 </script>
 
