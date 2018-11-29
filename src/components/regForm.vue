@@ -1,16 +1,20 @@
 <template>
   <div class="login-form">
     <div class="g-form">
-      <div class="g-form-line" v-for="formLine in formData">
+      <div
+        class="g-form-line"
+        v-for="formLine in formData"
+        :key="formLine.label"
+        :label="formLine.label"
+      >
         <span class="g-form-label">{{ formLine.label }}：</span>
         <div class="g-form-input">
-          <input type="text" 
-          v-model="formLine.model" placeholder="请输入用户名">
+          <input type="text" v-model="formLine.model" :placeholder="'请输入' + formLine.label">
         </div>
       </div>
       <div class="g-form-line">
         <div class="g-form-btn">
-          <a class="button" @click="onLogin">登录</a>
+          <a class="button">注册</a>
         </div>
       </div>
     </div>
@@ -24,7 +28,14 @@ export default {
   },
   data () {
     return {
-      
+      usernameModel: '',
+      passwordModel: '',
+      formData: [
+        { label: '用户名',
+          model: this.usernameModel },
+        { label: '密码',
+          model: this.passwordModel }
+      ]
     }
   },
   computed: {
@@ -33,8 +44,7 @@ export default {
       if (!/@/g.test(this.usernameModel)) {
         status = false
         errorText = '必须包含@'
-      }
-      else {
+      } else {
         status = true
         errorText = ''
       }
@@ -48,8 +58,7 @@ export default {
       if (!/@/g.test(this.usernameModel)) {
         status = false
         errorText = '必须包含@'
-      }
-      else {
+      } else {
         status = true
         errorText = ''
       }
@@ -76,7 +85,7 @@ export default {
 }
 .dialog-cover {
   background: #000;
-  opacity: .3;
+  opacity: 0.3;
   position: fixed;
   z-index: 5;
   top: 0;

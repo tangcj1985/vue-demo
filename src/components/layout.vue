@@ -3,21 +3,21 @@
     <div class="app-head">
       <div class="app-head-inner">
         <!-- <router-link :to="{path: '/'}"> -->
-          <img src="../assets/logo.png">
+        <img src="../assets/logo.png">
         <!-- </router-link> -->
         <div class="head-nav">
           <ul class="nav-list">
-            <!-- <li> {{ username }}</li>
-            <li class="nav-pile">|</li>
-            <li>退出</li> -->
-            <li @click="logClick">登录</li>
-            <li class="nav-pile">|</li>
-            <li @click="regClick">注册</li>
+            <li>{{ username }}</li>
+            <li v-if="username !==''" class="nav-pile">|</li>
+            <li v-if="username !==''">退出</li>
+            <li v-if="username ===''" @click="logClick">登录</li>
+            <li v-if="username ===''" class="nav-pile">|</li>
+            <li v-if="username ===''" @click="regClick">注册</li>
             <li class="nav-pile">|</li>
             <li @click="aboutClick">关于</li>
           </ul>
         </div>
-        </div>
+      </div>
     </div>
     <div class="container">
       <keep-alive>
@@ -27,14 +27,13 @@
     <div class="app-foot">
       <p>© 2018 TCJ NIUBI</p>
     </div>
-    <MyDialog :isShow='isShowAboutDialog' @on-close=
-      "closeDialog('isShowAboutDialog')"><p>关于怎么个牛逼</p></MyDialog>
-    <MyDialog :isShow='isShowLogDialog' @on-close=
-      "closeDialog('isShowLogDialog')">
-      <LogForm></LogForm>
+    <MyDialog :isShow="isShowAboutDialog" @on-close="closeDialog('isShowAboutDialog')">
+      <p>关于怎么个牛逼</p>
     </MyDialog>
-    <MyDialog :isShow='isShowRegDialog' @on-close=
-      "closeDialog('isShowRegDialog')">
+    <MyDialog :isShow="isShowLogDialog" @on-close="closeDialog('isShowLogDialog')">
+      <LogForm @has-log="onSuccessLog"></LogForm>
+    </MyDialog>
+    <MyDialog :isShow="isShowRegDialog" @on-close="closeDialog('isShowRegDialog')">
       <RegForm></RegForm>
     </MyDialog>
   </div>
@@ -72,8 +71,9 @@ export default {
       this[attr] = false
     },
     onSuccessLog (data) {
-      console.log(data)
+      console.log('onSuccessLog:' + data)
       this.closeDialog('isShowLogDialog')
+      console.log('username:' + data.username)
       this.username = data.username
     }
   }
@@ -81,19 +81,87 @@ export default {
 </script>
 
 <style>
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
   margin: 0;
   padding: 0;
   border: 0;
@@ -102,21 +170,34 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
   display: block;
 }
 body {
   line-height: 1;
 }
-ol, ul {
+ol,
+ul {
   list-style: none;
 }
-blockquote, q {
+blockquote,
+q {
   quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
   content: '';
   content: none;
 }
@@ -130,7 +211,9 @@ a {
 }
 body {
   background: #f0f2f5;
-  font-family: "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, 'Hiragino Sans GB',
+    'Hiragino Sans GB W3', 'Microsoft YaHei UI', 'Microsoft YaHei',
+    'WenQuanYi Micro Hei', sans-serif;
   font-size: 14px;
   color: #444;
 }

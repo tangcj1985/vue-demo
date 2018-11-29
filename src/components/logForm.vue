@@ -1,3 +1,5 @@
+/* eslint-disable vue/no-side-effects-in-computed-properties */
+/* eslint-disable vue/no-side-effects-in-computed-properties */
 <template>
   <div class="login-form">
     <div class="g-form">
@@ -37,14 +39,6 @@ export default {
     }
   },
   computed: {
-    userFlag () {
-      get () {
-
-      },
-      set () {
-
-      }
-    },
     userErrors () {
       let errorText, status
       if (!/@/g.test(this.usernameModel)) {
@@ -56,6 +50,7 @@ export default {
       }
       if (!this.userFlag) {
         errorText = ''
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
         this.userFlag = true
       }
       return {
@@ -74,6 +69,7 @@ export default {
       }
       if (!this.passwordFlag) {
         errorText = ''
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
         this.passwordFlag = true
       }
       return {
@@ -88,16 +84,13 @@ export default {
         this.errorText = '部分选项未通过'
       } else {
         this.errorText = ''
-        this.$http.get('api/login').then((res) => {
-          this.$emit('has-log', res.data)
+        this.$http.post('api/login').then((res) => {
+          this.$emit('has-log', res.body)
         }, (error) => {
           console.log(error)
         })
       }
     }
-  },
-  mounted: {
-    
   }
 }
 </script>
