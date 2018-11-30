@@ -6,37 +6,43 @@
         <template v-for="(product,key,index) in productList">
           <h3 :key="product.title">{{ product.title}}</h3>
           <ul :key="key">
-            <li v-for="item in product.list" :key="item.name">
+            <li v-for="item in product.list"
+                :key="item.name">
               <a :href="item.url">{{ item.name }}</a>
-              <span v-if="item.hot" class="hot-tag">HOT</span>
+              <span v-if="item.hot"
+                    class="hot-tag">HOT</span>
             </li>
           </ul>
-          <div v-if="!product.last" class="hr" :key="index"></div>
+          <div v-if="!product.last"
+               class="hr"
+               :key="index"></div>
         </template>
       </div>
       <div class="index-left-block lastest-news">
         <h2>最新消息</h2>
         <ul>
-          <li v-for="item in newsList" :key="item.title">
-            <a :href="item.url" class="new-item">{{ item.title }}</a>
+          <li v-for="item in newsList"
+              :key="item.title">
+            <a :href="item.url"
+               class="new-item">{{ item.title }}</a>
           </li>
         </ul>
       </div>
     </div>
     <div class="index-right">
-      <slide-show :slides="slides" :inv="invTime"></slide-show>
+      <slide-show :slides="slides"
+                  :inv="invTime"></slide-show>
       <div class="index-board-list">
-        <div
-          class="index-board-item"
-          v-for="(item, index) in boardList"
-          :class="[{'line-last' : index % 2 !== 0}, 'index-board-' + item.id]"
-          :key="item.title"
-        >
+        <div class="index-board-item"
+             v-for="(item, index) in boardList"
+             :class="[{'line-last' : index % 2 !== 0}, 'index-board-' + item.id]"
+             :key="item.title">
           <div class="index-board-item-inner">
             <h2>{{ item.title }}</h2>
             <p>{{ item.description }}</p>
             <div class="index-board-button">
-              <router-link class="button" :to="{path: 'detail/' + item.toKey}">立即购买</router-link>
+              <router-link class="button"
+                           :to="{path: 'detail/' + item.toKey}">立即购买</router-link>
             </div>
           </div>
         </div>
@@ -75,7 +81,7 @@ export default {
         {
           src: require('../assets/slideShow/pic3.jpg'),
           title: 'xxx3',
-          href: 'http://xxx.xxx.com'
+          href: 'detail/publish'
         },
         {
           src: require('../assets/slideShow/pic4.jpg'),
