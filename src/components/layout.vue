@@ -2,17 +2,21 @@
   <div>
     <div class="app-head">
       <div class="app-head-inner">
-        <!-- <router-link :to="{path: '/'}"> -->
-        <img src="../assets/logo.png">
-        <!-- </router-link> -->
+        <router-link :to="{path: '/'}">
+          <img src="../assets/logo.png">
+        </router-link>
         <div class="head-nav">
           <ul class="nav-list">
             <li>{{ username }}</li>
-            <li v-if="username !==''" class="nav-pile">|</li>
+            <li v-if="username !==''"
+                class="nav-pile">|</li>
             <li v-if="username !==''">退出</li>
-            <li v-if="username ===''" @click="logClick">登录</li>
-            <li v-if="username ===''" class="nav-pile">|</li>
-            <li v-if="username ===''" @click="regClick">注册</li>
+            <li v-if="username ===''"
+                @click="logClick">登录</li>
+            <li v-if="username ===''"
+                class="nav-pile">|</li>
+            <li v-if="username ===''"
+                @click="regClick">注册</li>
             <li class="nav-pile">|</li>
             <li @click="aboutClick">关于</li>
           </ul>
@@ -27,13 +31,16 @@
     <div class="app-foot">
       <p>© 2018 TCJ NIUBI</p>
     </div>
-    <MyDialog :isShow="isShowAboutDialog" @on-close="closeDialog('isShowAboutDialog')">
+    <MyDialog :isShow="isShowAboutDialog"
+              @on-close="closeDialog('isShowAboutDialog')">
       <p>关于怎么个牛逼</p>
     </MyDialog>
-    <MyDialog :isShow="isShowLogDialog" @on-close="closeDialog('isShowLogDialog')">
+    <MyDialog :isShow="isShowLogDialog"
+              @on-close="closeDialog('isShowLogDialog')">
       <LogForm @has-log="onSuccessLog"></LogForm>
     </MyDialog>
-    <MyDialog :isShow="isShowRegDialog" @on-close="closeDialog('isShowRegDialog')">
+    <MyDialog :isShow="isShowRegDialog"
+              @on-close="closeDialog('isShowRegDialog')">
       <RegForm></RegForm>
     </MyDialog>
   </div>
