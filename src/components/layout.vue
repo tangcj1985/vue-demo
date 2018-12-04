@@ -66,6 +66,14 @@ export default {
   },
   methods: {
     aboutClick () {
+      console.log('牛逼' + window.Qbian.fs)
+      var fs = window.Qbian.fs
+      fs.readFile('input.txt', function (err, data) {
+        if (err) {
+          return console.error(err)
+        }
+        console.log('异步读取: ' + data.toString())
+      })
       this.isShowAboutDialog = true
     },
     logClick () {

@@ -96,13 +96,13 @@
           <td>{{ period.label }}</td>
           <td>
             <span v-for="item in versions"
-                  :key="item.label">{{ item.label }}</span>
+                  :key=item.label>{{ item.label }}</span>
           </td>
           <td>{{ price }}</td>
         </tr>
       </table>
       <h3 class="buy-dialog-title">请选择银行</h3>
-      <bank-chooser @on-change="onChangeBanks"></bank-chooser>
+      <!-- <bank-chooser @on-change="onChangeBanks"></bank-chooser> -->
       <div class="button buy-dialog-btn"
            @click="confirmBuy">
         确认购买
@@ -112,18 +112,30 @@
                @on-close="hideErrDialog">
       支付失败！
     </my-dialog>
-    <check-order :is-show-check-dialog="isShowCheckOrder"
+    <!-- <check-order :is-show-check-dialog="isShowCheckOrder"
                  :order-id="orderId"
-                 @on-close-check-dialog="hideCheckOrder"></check-order>
+                 @on-close-check-dialog="hideCheckOrder"></check-order> -->
   </div>
 </template>
 
 <script>
+import VSelection from '../../components/base/selection'
+import VCounter from '../../components/base/counter'
+import VChooser from '../../components/base/chooser'
+import VMulChooser from '../../components/base/multiplyChooser'
 import Dialog from '../../components/base/dialog'
+// import BankChooser from '../../components/bankChooser'
+// import CheckOrder from '../../components/checkOrder'
 import _ from 'lodash'
 export default {
   components: {
+    VSelection,
+    VCounter,
+    VChooser,
+    VMulChooser,
     MyDialog: Dialog
+    // BankChooser,
+    // CheckOrder
   },
   data () {
     return {
@@ -198,6 +210,7 @@ export default {
       }
       this.$http.post('/api/getPrice', reqParams)
         .then((res) => {
+          console.log(res)
           this.price = res.data.amount
         })
     },
@@ -232,10 +245,10 @@ export default {
           this.orderId = res.data.orderId
           this.isShowCheckOrder = true
           this.isShowPayDialog = false
-        }, (error) => {
-          console.log(error)
+        }, (err) => {
+          console.log(err)
           this.isShowBuyDialog = false
-          this.isShowErrDialog = true
+          this.isShsowErrDialog = true
         })
     }
   },
